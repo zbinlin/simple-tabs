@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet">
+        <style>
+            ul.tabs {
+                list-style: none;
+                border-bottom: 1px solid gray;
+            }
+            .tabs > li {
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: -1px;
+                border: 1px solid gray;
+                border-bottom: 0;
+            }
+            .tabs > li > a {
+                padding: 5px 15px;
+                display: inline-block;
+                vertical-align: top;
+                border-bottom: 0;
+                position: relative;
+                cursor: pointer;
+            }
+            .tabs > li > a.active {
+                border-bottom: 1px solid white;
+                cursor: default;
+            }
+            .tabpanels {
+                margin-left: 2em;
+                border-left: 5px solid #afafaf;
+                padding-left: 0.5em;
+            }
+        </style>
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="simple-tabs.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="tabs">
+                <li><a class="tab" data-tab-panel-cls="js-tabpanel" data-tab-active="true" role="tab">Home</a></li>
+                <li><a class="tab" data-tab-panel-cls="js-tabpanel" role="tab">Article</a></li>
+                <li><a class="tab" data-tab-panel-cls="js-tabpanel" role="tab">About</a></li>
+            </ul>
+            <div class="tabpanels">
+                <div class="js-tabpanel tabpanel" role="tabpanel">
+                    Home Content
+                </div>
+                <div class="js-tabpanel tabpanel" role="tabpanel">
+                    <div class="sub">
+                        <ul class="sub tabs">
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" data-tab-active="true" role="tab">Post 1</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 2</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 3</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 4</a></li>
+                        </ul>
+                        <div class="sub tabpanels">
+                            <div class="js-sub-tabpanel">
+                                Post 1 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 2 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 3 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 4 Content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="js-tabpanel tabpanel" role="tabpanel">
+                    <div class="sub">
+                        <ul class="tabs">
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 11</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" data-tab-active="true" role="tab">Post 12</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 13</a></li>
+                            <li><a class="tab" data-tab-panel-cls="js-sub-tabpanel" role="tab">Post 14</a></li>
+                        </ul>
+                        <div class="tabpanels">
+                            <div class="js-sub-tabpanel">
+                                Post 11 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 12 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 13 Content
+                            </div>
+                            <div class="js-sub-tabpanel">
+                                Post 14 Content
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $('[data-tab-panel-cls="js-tabpanel"]').SimpleTabs(function (evt, $tabs, $tabpanels) {
+                    $tabs.removeClass("active");
+                    $(this).addClass("active");
+                });
+                $(".sub").each(function (idx, elem) {
+                    $(elem).find(".tab").SimpleTabs("mouseover", function (evt, $tabs, $tabpanels) {
+                        $tabs.removeClass("active");
+                        $(this).addClass("active");
+                    }, { container: elem });
+                });
+            </script>
+        </div>
+    </body>
+</html>
